@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<!--struts的action由spring进行实例化-->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--动态方法调用，即使打开了这个选项，依然要在需要动态调用的action声明那些方法需要动态调用-->
+	<!--<constant name="struts.enable.DynamicMethodInvocation" value="true" />-->
+	<!-- 上传文件大小限制设置 -->
+	<!--<constant name="struts.multipart.maxSize" value="-1" />-->
+	<!-- 编码格式 -->
+	<!--<constant name="struts.i18n.encoding" value="UTF-8" />-->
+
+	<package name="basicstruts2" extends="struts-default">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<!-- 需要进行权限控制的页面访问,没有配置class，默认的class是ActionSupport(见struts-default.xml) -->
+		<action name="page_*_*">
+			<result>/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+	</package>
+
+</struts>
